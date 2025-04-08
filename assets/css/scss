@@ -1,8 +1,16 @@
-footer,
-.btn,
-a.btn,
-header .btn,
-.header .btn,
+---
+---
+
+@import "{{ site.theme }}";
+
+footer {
+  display: none !important;
+}
+
+.btn {
+  display: none !important;
+}
+
 header a[href*="github.com"] {
   display: none !important;
 }
