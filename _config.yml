@@ -1,3 +1,4 @@
 theme: jekyll-theme-leap-day
 title: ""
 description: ""
+site.show_downloads: false
