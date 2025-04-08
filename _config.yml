@@ -1,3 +1,5 @@
 theme: jekyll-theme-leap-day
 title: ""
 description: ""
+github:
+  is_project_page: false
