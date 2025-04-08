@@ -2,7 +2,7 @@
 
 Ovaj starter kit sadrži osnovnu Ballerina aplikaciju koja je integrisana sa Prometheus-om i Grafana-om za praćenje metrika. Takođe uključuje Helm chart za jednostavno postavljanje na Kubernetes klaster.
 
-![Leap Day] url(../images/IMG_0810.JPG.png)
+![Leap Day](images/IMG_0810.JPG)
 
 ## Komponente
 
