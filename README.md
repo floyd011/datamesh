@@ -4,107 +4,65 @@ Ovaj starter kit sadrži osnovnu Ballerina aplikaciju koja je integrisana sa Pro
 
 ![Leap Day](images/IMG_0810.JPG)
 
-## Komponente
+# Understanding Peer-to-Peer (P2P) Database Replication
 
-- **Ballerina aplikacija**: REST servis sa health endpointom i custom metrikama.
-- **Prometheus**: Za prikupljanje metrika.
-- **Grafana**: Za vizualizaciju metrika.
-- **AlertManager**: Za slanje notifikacija na osnovu pravila.
-- **Helm Chart**: Za jednostavan deploy na Kubernetes.
+In traditional database replication, data flows from a primary (leader) node to one or more secondary (follower) nodes. While effective, this model often introduces bottlenecks, single points of failure, and scalability issues.
 
-## Pre-rekviziti
+Peer-to-peer (P2P) database replication eliminates these limitations by allowing every node in the network to act as both a provider and consumer of replicated data. This decentralized approach ensures greater scalability, resilience, and performance.
 
-Pre nego što počneš sa deploy-om, uveri se da imaš sledeće instalirano:
-- Kubernetes klaster (lokalno ili cloud-based)
-- Helm 3
-- Prometheus i Grafana instalirani u klasteru
-- Docker (ako želiš graditi slike lokalno)
+⸻
 
-## Deploy
+## How Does P2P Database Replication Work?
 
-### 1. Build Docker sliku za Ballerina aplikaciju
+Instead of a single authoritative source, each node in a P2P system synchronizes directly with other nodes. This can be achieved using:
 
-Prvo trebaš da izgradimo Docker sliku za tvoju Ballerina aplikaciju. U root direktorijumu repozitorijuma kreiraj `Dockerfile`:
+🔹 **Change Data Capture (CDC)** – Tracking changes at the database level.
 
-```Dockerfile
-FROM ballerina/ballerina:slbeta
+🔹 **Event-Driven Replication** – Using streaming platforms like Kafka, Pulsar, or NATS.
 
-COPY ballerina-app/ /home/ballerina/ballerina-app/
+🔹 **Conflict Resolution Mechanisms** – Handling concurrent writes in a multi-node system.
 
-WORKDIR /home/ballerina/ballerina-app/
+🔹 **Delta-Based Syncing** – Synchronizing only the changes instead of full data dumps.
 
-RUN ballerina build main.bal
 
-CMD ["bal", "run", "main.bal"]
-```
+⸻
 
-Zatim, izgradite Docker sliku:
+## Why Choose P2P Replication?
 
-```bash
-docker build -t ballerina-user-service:latest .
-```
+✅ **Scalability** - No central node bottleneck – new nodes join seamlessly without performance degradation.
 
-### 2. Deploy sa Helm-om
+✅ **Fault Tolerance** - Nodes can fail or disconnect without impacting overall system integrity.
 
-Pre nego što implementiraš aplikaciju, trebaš da napraviš Prometheus monitore putem Helm-a.
+✅ **Multi-Region & Multi-Cloud Ready** - Perfect for distributed applications that require real-time data consistency across locations.
 
-1. Dodaj Prometheus repo (ako već nije dodan):
+✅ **Faster Disaster Recovery** - Since all nodes contain a copy of the data, failover is instantaneous.
 
-    ```bash
-    helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-    helm repo update
-    ```
+⸻
 
-2. Deploy Prometheus i Grafana:
+## Use Cases for P2P Database Replication
 
-    ```bash
-    helm install prometheus prometheus-community/kube-prometheus-stack
-    ```
+🚀 **Global-Scale Applications** – Keeping data synchronized across continents.
 
-3. Deploy tvoje Ballerina aplikacije sa Helm chart-om:
+📡 **IoT & Edge Computing** – Distributed databases for low-latency edge nodes.
 
-    ```bash
-    helm install ballerina-app ./helm/ballerina-app
-    ```
+💰 **Financial Systems** – High-availability replication across banking networks.
 
-### 3. Pristup Prometheus i Grafana
+🔍 **Analytics & Big Data** – Real-time aggregation across multiple nodes.
 
-- **Prometheus**: Nađeš ga putem port-forwarding-a:
+🛡️ **Disaster Recovery & High Availability** – Ensuring no data loss even in outages.
 
-    ```bash
-    kubectl port-forward svc/prometheus-operated 9090:9090
-    ```
+⸻
 
-    Onda, otvori [http://localhost:9090](http://localhost:9090) u tvom browseru.
+## Challenges & Considerations
 
-- **Grafana**: Možeš pristupiti putem port-forwarding-a:
+While P2P replication offers many benefits, it also presents challenges:
 
-    ```bash
-    kubectl port-forward svc/grafana 3000:80
-    ```
+🔹 **Conflict Resolution** – What happens when two nodes update the same data?
 
-    Zatim otvori [http://localhost:3000](http://localhost:3000) u tvom browseru. Korisničko ime i lozinka su `admin/admin`.
+🔹 **Network Efficiency** – How do we avoid excessive synchronization overhead?
 
-### 4. Upozorenja i Alerting
+🔹 **Security & Trust** – How do nodes verify data integrity?
 
-Prometheus će automatski početi pratiti tvoje metrike. Ako latencija pređe prag ili se aplikacija ugasi, AlertManager će poslati obaveštenje prema podešenim pravilima.
+Innovative algorithms and modern data streaming solutions are addressing these concerns, making P2P replication a powerful alternative to traditional methods.
 
-Da bi podesio e-mail notifikacije, izmeni `monitoring/alertmanager-config.yaml` fajl sa svojim SMTP podacima.
 
-### 5. Health Endpoint
-
-Aplikacija takođe izlaže health endpoint na portu 8081. Možeš proveriti status aplikacije putem:
-
-```bash
-curl http://<your-k8s-service-ip>:8081/healthz
-```
-
-Ako sve funkcioniše, trebalo bi da vidiš odgovor: `"OK"`.
-
-## Dodatna podešavanja
-
-Ako želiš da dodas dodatne metrike ili modifikujete postojeće, slobodno ažuriraj Ballerina kod u `ballerina-app/main.bal` i Helm chart konfiguraciju.
-
-## Kontakt
-
-Ako imaš bilo kakvih pitanja ili trebaš pomoć, slobodno se obrati!
