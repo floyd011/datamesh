@@ -1,6 +1,33 @@
-# Ballerina Observability Starter Kit
+# Next-Gen P2P Database Replication – Unstoppable Speed, Infinite Scale!
 
-Ovaj starter kit sadrži osnovnu Ballerina aplikaciju koja je integrisana sa Prometheus-om i Grafana-om za praćenje metrika. Takođe uključuje Helm chart za jednostavno postavljanje na Kubernetes klaster.
+What if database replication could be blazing fast, truly peer-to-peer, and scalable without limits? No matter how many nodes sync, performance remains lightning-fast. Sounds impossible? We made it happen! 🔥
+
+## Supported Databases? ALL Major Players!
+
+✅ **SQL Server** – Real-time sync across instances.
+
+✅ **Oracle** – Enterprise-grade replication without overhead.
+
+✅ **MySQL & PostgreSQL** – Cross-region, cross-cloud, effortless.
+
+✅ **MongoDB** – Document-based replication at warp speed.
+
+## What Makes This a Breakthrough?
+
+🚀 **Near-Instant Synchronization** – No matter the node count.
+
+🔗 **True P2P Replication** – No central bottlenecks, direct sync.
+
+⚡ **Kafka + Debezium at the Core** – Event-driven CDC supercharged.
+
+🛡️ **Fault-Tolerant & Self-Healing** – Auto-recovery, zero data loss.
+
+🌍 **Massively Scalable** – More nodes = more power, not more latency.
+
+
+### The Secret Sauce?
+
+🔐 We won’t reveal the algorithm just yet, but here’s the catch – it’s NOT your typical consensus-based replication. No Raft, no Paxos, no slowdowns.
 
 ![Leap Day](images/IMG_0810.JPG)
 
