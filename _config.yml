@@ -1,13 +1,3 @@
 theme: jekyll-theme-leap-day
 title: ""
 description: ""
-github_button_location_top_navbar: false
-
-# inserts github link below page title
-github_button_location_below_title: false
-
-# inserts github link at bottom of page (least visible)
-github_button_location_page_bottom: false
-
-# link to your github repo. replace <organization> (if applicable) and <repo name> and <branch name>. Note that the github link will be {{site.github_editme_path}}/{{page.path}}
-github_editme_path: 
