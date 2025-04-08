@@ -7,10 +7,7 @@ footer {
   display: none !important;
 }
 
-.btn {
+a.button.fork {
   display: none !important;
 }
 
-header a[href*="github.com"] {
-  display: none !important;
-}
