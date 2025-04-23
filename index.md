@@ -35,7 +35,29 @@ This project implements an end-to-end ETL (Extract, Transform, Load) pipeline us
 This is a complete end-to-end ETL workflow on AWS using Step Functions, Lambda, S3, SNS, and Terraform for infrastructure as code.
 
 ---
-
+## Folder structure
+```
+etl-step-functions/
+├── main.tf
+├── iam.tf
+├── s3.tf
+├── sns.tf
+├── step_function.tf
+├── variables.tf
+├── outputs.tf
+├── lambdas/
+│   ├── extract/
+│   │   └── main.py
+│   ├── transform/
+│   │   └── main.py
+│   ├── load/
+│   │   └── main.py
+│   ├── notify_success/
+│   │   └── main.py
+│   └── notify_failure/
+│       └── main.py
+└── README.md
+```
 
 ## Terraform Files
 
